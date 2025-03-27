@@ -10,6 +10,10 @@ function init() {
 }
 
 async function fetchData() {
+  document.querySelector('#search + .button').addEventListener('click', (event) => {
+    event.preventDefault();
+    onSearch(document.getElementById('search').value);
+  });
   const data = await fetch('https://opendata.brussels.be/api/explore/v2.1/catalog/datasets/infrastructures-sportives-gerees-par-la-ville-de-bruxelles/records?limit=38');
   const myData = await data.json();
   itemsOrig = myData.results;
@@ -23,7 +27,6 @@ async function fetchData() {
       items.push(obj);
     }
   });
-  console.log(items);
   render();
 }
 
