@@ -26,9 +26,18 @@ body {
   border: 1px solid #333;
   float: left;
   padding: 24px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto;
+
+  & > div {
+    text-align: start;
+    display: flex;
+    flex-direction: column;
+
+    &:not(.name) {
+      text-align: end;
+    }
+  }
 }
 form {
   display: grid;
