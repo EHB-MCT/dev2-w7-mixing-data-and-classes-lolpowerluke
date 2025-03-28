@@ -6,7 +6,6 @@ let lang = "nl";
 
 function init() {
   fetchData();
-  render();
 }
 
 async function fetchData() {
@@ -27,16 +26,22 @@ async function fetchData() {
       items.push(obj);
     }
   });
-  render();
+  render(items);
 }
 
 function onSearch(searchValue) {
-
+  let resultsArray = [];
+  items.forEach(item => {
+    if (item._name.toLowerCase().includes(searchValue.toLowerCase())) {
+      resultsArray.push(item)
+    }
+  });
+  render(resultsArray);
 }
 
-function render() {
+function render(objArray) {
   let html = "";
-  items.forEach(item => {
+  objArray.forEach(item => {
     html += `<div class="item">
               <div class="name">
                 <div class="item-field">Name: ${item._name}</div>
